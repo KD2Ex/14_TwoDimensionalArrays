@@ -42,18 +42,15 @@ bool is_game_won(char gameField[3][3], char mark) {
 }
 
 bool is_game_ended(char gameField[3][3]) {
-    bool end;
+
     for (int i = 0; i < 3; i++) {
-        end = true;
         for (int j = 0; j < 3; j++) {
             if (gameField[i][j] == ' ') {
-                end = false;
-                break;
+                return false;
             }
         }
     }
-
-    return end;
+    return true;
 }
 
 bool is_input_correct(char gameField[3][3], int x, int y) {
@@ -86,8 +83,10 @@ int main() {
         } else {
             mark = 'O';
         }
-        cout << "Enter a koordinat for your " << mark << ":";
+        cout << "Enter a koordinat from 1 to 3 for your " << mark << ":";
         cin >> x >> y;
+        x--;
+        y--;
         if (is_input_correct(gameField, x, y)) {
             gameField[x][y] = mark;
             print_game_field(gameField);
