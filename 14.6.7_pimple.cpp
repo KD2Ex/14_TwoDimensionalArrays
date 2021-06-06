@@ -28,8 +28,26 @@ bool print_and_check_pimple(bool pimple[][12]) {
 }
 
 void poping(bool pimple[][12], int startX, int startY, int endX, int endY) {
-    for (int i = startY; i <= endY; i++) {
-        for (int j = startX; j <= endX; j++) {
+    int startPointX;
+    int startPointY;
+    int endPointX;
+    int endPointY;
+    if (startX <= endX) {
+        startPointX = startX;
+        endPointX = endX;
+    } else {
+        startPointX = endX;
+        endPointX = startX;
+    }
+    if (startY <= endY) {
+        startPointY = startY;
+        endPointY = endY;
+    } else {
+        startPointY = endY;
+        endPointY = startY;
+    }
+    for (int i = startPointY; i <= endPointY; i++) {
+        for (int j = startPointX; j <= endPointX; j++) {
             pimple[i][j] = false;
             cout << "Pop!\n";
         }
@@ -47,13 +65,14 @@ int main() {
     while (!print_and_check_pimple(pimple)) {
         cout << "Enter the start koordinats:";
         cin >> startX >> startY;
-        cout << "Enter the ending koordinats:";
+        cout << "Enter the koordinats below the start one:";
         cin >> endX >> endY;
-        if (startX < 0 || startX > 12 || startY < 0 || startY > 12
-            || endX < 0 || endX > 12 || endY < 0 || endY > 12) {
+
+        if (startX < 1 || startX > 12 || startY < 1 || startY > 12
+            || endX < 1 || endX > 12 || endY < 1 || endY > 12) {
             cout << "Invalid range!\n";
         } else {
-            poping(pimple, startX, startY, endX, endY);
+            poping(pimple, --startX, --startY, --endX, --endY);
         }
     }
     cout << "Done!";
