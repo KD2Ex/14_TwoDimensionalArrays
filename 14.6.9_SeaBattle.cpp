@@ -156,14 +156,14 @@ int main() {
 
     while (true) {
         cout << "Player 1 turn!\n";
-        print_game_field(playerTwoField);
+
         shoot_to(playerTwoField);
         if (win_checking(playerTwoField)) {
             cout << "Player 1 wins!";
             return 0;
         }
         cout << "Player 2 turn!\n";
-        print_game_field(playerOneField);
+
         shoot_to(playerOneField);
         if (win_checking(playerOneField)) {
             cout << "Player 2 wins!";
